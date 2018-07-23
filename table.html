@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>选择货架号</title>
+    <script type="text/javascript" src="01.js"></script>
+    <style type="text/css">
+        #table1 td {
+            text-align: center;
+            width: 15%;
+        }
+
+        #table2 td {
+            text-align: center;
+            width: 15%;
+            background-color: #dcdcdc;
+            cursor: pointer;
+        }
+    </style>
+    <body>
+        <table id="table1" border="0" cellpadding="1" cellspacing="1" style="width: 100%">
+            <tr>
+                <td>货架</td>
+                <td>一层</td>
+                <td>二层</td>
+                <td>三层</td>
+                <td>四层</td>
+                <td>五层</td>
+            </tr>
+        </table>
+        <table id="table2" border="0" cellpadding="1" cellspacing="1" style="width:100%;">
+            <tr>
+                <td style="background-color:#ffffff;">A001</td>
+                <td id="td0" title="A001-1|11" style="background-color:#6699FF;"></td>
+                <td id="td1" title="A001-2|12"></td>
+                <td id="td2" title="A001-3|13"></td>
+                <td id="td3" title="A001-4|14"></td>
+                <td id="td4" title="A001-5|15"></td>
+            </tr>
+            <tr>
+                <td style="background-color:#ffffff;">A002</td>
+                <td id="td5" title="A002-1|21"></td>
+                <td id="td6" title="A002-2|22"></td>
+                <td id="td7" title="A002-3|23"></td>
+                <td id="td8" title="A002-4|24"></td>
+                <td id="td9" title="A002-5|25"></td>
+            </tr>
+            <tr>
+                <td style="background-color:#ffffff;">A003</td>
+                <td id="td10" title="A003-1|31"></td>
+                <td id="td11" title="A003-2|32"></td>
+                <td id="td12" title="A003-3|33"></td>
+                <td id="td13" title="A003-4|34"></td>
+                <td id="td14" title="A003-5|35"></td>
+            </tr>
+            <tr>
+                <td style="background-color:#ffffff;">A004</td>
+                <td id="td15" title="A004-1|41"></td>
+                <td id="td16" title="A004-2|42"></td>
+                <td id="td17" title="A004-3|43"></td>
+                <td id="td18" title="A004-4|44"></td>
+                <td id="td19" title="A004-5|45"></td>
+            </tr>
+            <tr>
+                <td style="background-color:#ffffff;">A005</td>
+                <td id="td20" title="A005-1|51"></td>
+                <td id="td21" title="A005-2|52"></td>
+                <td id="td22" title="A005-3|53"></td>
+                <td id="td23" title="A005-4|54"></td>
+                <td id="td24" title="A005-5|55"></td>
+            </tr>
+        </table>
+        <script type ="text/javascript">
+            var tdnum = 0;
+            var trid = "td";
+            // 键盘事件 
+            document.onkeydown = function (event) {
+                // 兼容 Mozilla Firefox 
+                if (null == event) {
+                    event = window.event;
+                }
+                if (event.keyCode == 13) {
+                    p13key();
+                }
+                else if (event.keyCode <= 40 && event.keyCode >= 37) {
+                    keytd(event.keyCode);
+                }
+            }
+            
+            // 变换颜色 
+            function setcolor(oldtd, newtd) {
+                document.getElementById(oldtd).style.backgroundColor = "#dcdcdc";
+                document.getElementById(newtd).style.backgroundColor = "#6699FF";
+            }
+            // 实现切换功能主要代码 
+            function keytd(key) {
+                // 左 
+                if (key == 37) {
+                    --tdnum;
+                    if (null == document.getElementById(trid + tdnum)) {
+                        tdnum++;
+                        return;
+                    }
+                    setcolor(trid + (tdnum + 1), trid + tdnum);
+                }
+                    // 右 
+                else if (key == 39) {
+                    ++tdnum;
+                    if (null == document.getElementById(trid + tdnum)) {
+                        tdnum--;
+                        return;
+                    }
+                    setcolor(trid + (tdnum - 1), trid + tdnum);
+                }
+                    // 上 
+                else if (key == 38) {
+                    tdnum = tdnum - 5;
+                    if (null == document.getElementById(trid + tdnum)) {
+                        tdnum = tdnum + 5;
+                        return;
+                    }
+                    setcolor(trid + (tdnum + 5), trid + tdnum);
+                }
+                    // 下 
+                else if (key == 40) {
+                    tdnum = tdnum + 5;
+                    if (null == document.getElementById(trid + tdnum)) {
+                        tdnum = tdnum - 5;
+                        return;
+                    }
+                    setcolor(trid + (tdnum - 5), trid + tdnum);
+                }
+            }
+        </script>
+    </body>
+</html> 
